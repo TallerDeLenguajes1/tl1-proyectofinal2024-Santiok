@@ -17,7 +17,8 @@ namespace FabricaDePersonajes
         private DateTime fechaNac;
         private int edad;
 
-        private string []apodos = { "El Valiente","El Sabio","El Rápido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
+        private string []nombres = {"Artemis","Freya","Aurelio","Cleo","","Atticus","Demeter","Ares"};
+        private string []apodos = {"El Valiente","El Sabio","El Rápido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
 
         //Metodo constructor del personaje.
         public FabricaDePersonajes()
@@ -29,7 +30,8 @@ namespace FabricaDePersonajes
             int nivel = random.Next(1,11);
             int armadura = random.Next(1,11);
             int salud = 100;
-            string apodo = apodos[random.Next(0,6)];
+            string nombre = nombres[random.Next(0,9)];
+            string apodo = apodos[random.Next(0,9)];
             int edad = random.Next(0,301);
             DateTime fechaNac = CalcularFechaDeNacimiento(edad);
         }
