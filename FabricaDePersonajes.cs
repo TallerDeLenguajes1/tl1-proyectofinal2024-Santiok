@@ -19,47 +19,26 @@ namespace FabricaDePersonajes
         private string? Apodo;
         private DateTime FechaNac;
         private int Edad;
-        
-
-        /*
-        // Características del personaje.
-        public int Velocidad { get; private set; }
-        public int Destreza { get; private set; }
-        public int Fuerza { get; private set; }
-        public int Nivel { get; private set; }
-        public int Armadura { get; private set; }
-        public int Salud { get; private set; }
-        // Datos del personaje.
-        public string Tipo { get; private set; }
-        public string Nombre { get; private set; }
-        public string Apodo { get; private set; }
-        public DateTime FechaNac { get; private set; }
-        public int Edad { get; private set; }
-        */
 
         private string []nombres = {"Artemis","Freya","Aurelio","Cleo","","Atticus","Demeter","Ares"};
         private string []apodos = {"El Valiente","El Sabio","El Rápido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
 
-        /////
-
         private static readonly HttpClient client = new HttpClient();
-
-        //////
 
         //Metodo constructor del personaje.
         public FabricaDePersonaje()
         {
             Random random = new Random();
-            int Velocidad = random.Next(1,11);
-            int Destreza = random.Next(1,6);
-            int Fuerza = random.Next(1,11);
-            int Nivel = random.Next(1,11);
-            int Armadura = random.Next(1,11);
-            int Salud = 100;
-            string Nombre = nombres[random.Next(0,nombres.Length)];
-            string Apodo = apodos[random.Next(0,apodos.Length)];
-            int Edad = random.Next(0,301);
-            DateTime FechaNac = CalcularFechaDeNacimiento(Edad);
+            this.Velocidad = random.Next(1,11);
+            this.Destreza = random.Next(1,6);
+            this.Fuerza = random.Next(1,11);
+            this.Nivel = random.Next(1,11);
+            this.Armadura = random.Next(1,11);
+            this.Salud = 100;
+            this.Nombre = nombres[random.Next(0,nombres.Length)];
+            this.Apodo = apodos[random.Next(0,apodos.Length)];
+            this.Edad = random.Next(0,301);
+            this.FechaNac = CalcularFechaDeNacimiento(Edad);
 
             //Obtengo y asigno el tipo de personaje.
             Tipo = GetTipoAsync().GetAwaiter().GetResult();
@@ -118,7 +97,7 @@ namespace FabricaDePersonajes
 
     }
 
-    public class Root
+   /* public class Root
     {
         public List<Result> results { get; set; }
     }
@@ -127,5 +106,5 @@ namespace FabricaDePersonajes
     {
         public string name { get; set; }
     }
-
+*/
 }
