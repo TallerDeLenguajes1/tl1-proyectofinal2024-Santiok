@@ -1,39 +1,68 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Api;
 namespace FabricaDePersonajes
 {
-    public class FabricaDePersonajes 
+    public class FabricaDePersonaje 
     {
+        
         //Caracteristicas del personaje.
-        private int velocidad;
-        private int destreza;
-        private int fuerza;
-        private int nivel;
-        private int armadura;
-        private int salud;
+        private int Velocidad;
+        private int Destreza;
+        private int Fuerza;
+        private int Nivel;
+        private int Armadura;
+        private int Salud;
         //Datos del personaje.
-        private string tipo;
-        private string? nombre;
-        private string? apodo;
-        private DateTime fechaNac;
-        private int edad;
+        private string? Tipo;
+        private string? Nombre;
+        private string? Apodo;
+        private DateTime FechaNac;
+        private int Edad;
+        
+
+        /*
+        // Características del personaje.
+        public int Velocidad { get; private set; }
+        public int Destreza { get; private set; }
+        public int Fuerza { get; private set; }
+        public int Nivel { get; private set; }
+        public int Armadura { get; private set; }
+        public int Salud { get; private set; }
+        // Datos del personaje.
+        public string Tipo { get; private set; }
+        public string Nombre { get; private set; }
+        public string Apodo { get; private set; }
+        public DateTime FechaNac { get; private set; }
+        public int Edad { get; private set; }
+        */
 
         private string []nombres = {"Artemis","Freya","Aurelio","Cleo","","Atticus","Demeter","Ares"};
         private string []apodos = {"El Valiente","El Sabio","El Rápido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
 
+        /////
+
+        private static readonly HttpClient client = new HttpClient();
+
+        //////
+
         //Metodo constructor del personaje.
-        public FabricaDePersonajes()
+        public FabricaDePersonaje()
         {
             Random random = new Random();
-            int velocidad = random.Next(1,11);
-            int destreza = random.Next(1,6);
-            int fuerza = random.Next(1,11);
-            int nivel = random.Next(1,11);
-            int armadura = random.Next(1,11);
-            int salud = 100;
-            string nombre = nombres[random.Next(0,9)];
-            string apodo = apodos[random.Next(0,9)];
-            int edad = random.Next(0,301);
-            DateTime fechaNac = CalcularFechaDeNacimiento(edad);
+            int Velocidad = random.Next(1,11);
+            int Destreza = random.Next(1,6);
+            int Fuerza = random.Next(1,11);
+            int Nivel = random.Next(1,11);
+            int Armadura = random.Next(1,11);
+            int Salud = 100;
+            string Nombre = nombres[random.Next(0,nombres.Length)];
+            string Apodo = apodos[random.Next(0,apodos.Length)];
+            int Edad = random.Next(0,301);
+            DateTime FechaNac = CalcularFechaDeNacimiento(Edad);
+
+            //Obtengo y asigno el tipo de personaje.
+            Tipo = GetTipoAsync().GetAwaiter().GetResult();
         }
 
         //Metodo para calcular la fecha de nacimiento.
@@ -46,32 +75,57 @@ namespace FabricaDePersonajes
             return new DateTime(anioNacimiento, random.Next(1,13), random.Next(1,29));
         }
 
+        //Metodo para obtener el tipo.
+        private static async Task<string> GetTipoAsync()
+        {
+            var url = "https://www.dnd5eapi.co/api/classes/";
 
+            HttpResponseMessage response = await client.GetAsync(url);
 
+            response.EnsureSuccessStatusCode();
 
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            //DeserealizO la respuesta.
+             var root = JsonSerializer.Deserialize<Root>(responseBody, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            //Elijo un tipo de personaje aleatoriamente.
+            Random random = new Random();
+            int index = random.Next(root.results.Count);
+
+            return root.results[index].name;
+
+        }
+
+        //Método para mostrar todas las características del personaje.
+        public string MostrarCaracteristicas()
+        {
+            return $"Nombre: {Nombre}\n" +
+                   $"Apodo: {Apodo}\n" +
+                   $"Tipo: {Tipo}\n" +
+                   $"Fecha de Nacimiento: {FechaNac.ToShortDateString()}\n" +
+                   $"Edad: {Edad}\n" +
+                   $"Velocidad: {Velocidad}\n" +
+                   $"Destreza: {Destreza}\n" +
+                   $"Fuerza: {Fuerza}\n" +
+                   $"Nivel: {Nivel}\n" +
+                   $"Armadura: {Armadura}\n" +
+                   $"Salud: {Salud}\n";
+        }
 
     }
 
+    public class Root
+    {
+        public List<Result> results { get; set; }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public class Result
+    {
+        public string name { get; set; }
+    }
 
 }
