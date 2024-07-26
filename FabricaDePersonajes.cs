@@ -1,11 +1,14 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using FabricaDePersonajes;
+using System.IO;
+using System.Collections.Generic;
 using Api;
+
 namespace FabricaDePersonajes
 {
     public class FabricaDePersonaje 
     {
-        
         //Caracteristicas del personaje.
         private int Velocidad;
         private int Destreza;
@@ -97,7 +100,7 @@ namespace FabricaDePersonajes
 
     }
 
-   /* public class Root
+  /*public class Root
     {
         public List<Result> results { get; set; }
     }
@@ -105,6 +108,6 @@ namespace FabricaDePersonajes
     public class Result
     {
         public string name { get; set; }
-    }
-*/
+    }*/
+
 }
