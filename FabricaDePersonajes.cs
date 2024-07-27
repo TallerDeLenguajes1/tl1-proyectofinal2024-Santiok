@@ -9,6 +9,7 @@ namespace FabricaDePersonajes
 {
     public class FabricaDePersonaje 
     {
+        /*
         //Caracteristicas del personaje.
         private int Velocidad;
         private int Destreza;
@@ -22,6 +23,21 @@ namespace FabricaDePersonajes
         private string? Apodo;
         private DateTime FechaNac;
         private int Edad;
+        */
+        
+        //Características del personaje.
+        public int Velocidad { get; private set; }
+        public int Destreza { get; private set; }
+        public int Fuerza { get; private set; }
+        public int Nivel { get; private set; }
+        public int Armadura { get; private set; }
+        public int Salud { get; set; }
+        //Datos del personaje.
+        public string? Tipo { get; private set; }
+        public string? Nombre { get; private set; }
+        public string? Apodo { get; private set; }
+        public DateTime FechaNac { get; private set; }
+        public int Edad { get; private set; }
 
         private string []nombres = {"Artemis","Freya","Aurelio","Cleo","","Atticus","Demeter","Ares"};
         private string []apodos = {"El Valiente","El Sabio","El Rápido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
@@ -99,15 +115,5 @@ namespace FabricaDePersonajes
         }
 
     }
-
-  /*public class Root
-    {
-        public List<Result> results { get; set; }
-    }
-
-    public class Result
-    {
-        public string name { get; set; }
-    }*/
 
 }

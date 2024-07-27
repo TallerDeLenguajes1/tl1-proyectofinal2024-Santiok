@@ -7,7 +7,7 @@ using Api;
 
 namespace HistorialJson
 {
-    public class HistorialJson
+    public class historialJson
     {
         //Metodo para guardar al ganador.
         public string GuardarGanador(FabricaDePersonaje ganador, string listaDeGanadores)
