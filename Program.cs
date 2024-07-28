@@ -92,6 +92,12 @@ class Program
     Random random = new Random();
     List<FabricaDePersonaje> seleccionados = listaPersonajes.OrderBy(x => random.Next()).Take(3).ToList();
 
+    // Restablecer la salud de los personajes seleccionados antes de mostrarlos.
+    foreach (var personaje in seleccionados)
+    {
+        personaje.Salud = 100;
+    }
+
     //Se muestran los tres personajes disponibles que tiene el jugador para elegir.
     Console.WriteLine("Selecciona un personaje:");
     for (int i = 0; i < seleccionados.Count; i++)
@@ -174,17 +180,3 @@ class Program
     }
 
 }
-
-
-    
-
-
-
-
-
-
-    
-
-
-    
-

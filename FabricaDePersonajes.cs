@@ -9,22 +9,7 @@ namespace FabricaDePersonajes
 {
     public class FabricaDePersonaje 
     {
-        /*
-        //Caracteristicas del personaje.
-        private int Velocidad;
-        private int Destreza;
-        private int Fuerza;
-        private int Nivel;
-        private int Armadura;
-        private int Salud;
-        //Datos del personaje.
-        private string? Tipo;
-        private string? Nombre;
-        private string? Apodo;
-        private DateTime FechaNac;
-        private int Edad;
-        */
-        
+   
         //Características del personaje.
         public int Velocidad { get; private set; }
         public int Destreza { get; private set; }
