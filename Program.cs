@@ -6,7 +6,6 @@ using FabricaDePersonajes;
 using HistorialJson;
 using PersonajeJson;
 using Combate;
-using torneo;
 using Api;
 
 class Program
@@ -19,15 +18,15 @@ class Program
         historialJson manejadorHistorial = new historialJson();
         List<FabricaDePersonaje> listaPersonajes = new List<FabricaDePersonaje>();
 
-        // Verifico si el archivo de personajes existe y si tiene datos.
+        //Verifico si el archivo de personajes existe y si tiene datos.
         if (manejadorJson.Existe(archivoPersonajes))
         {
-            // Cargo los personajes desde el archivo existente.
+            //Cargo los personajes desde el archivo existente.
             listaPersonajes = manejadorJson.LeerPersonajes(archivoPersonajes);
         }
         else
         {
-            // Genero 10 personajes y los guardo en el archivo.
+            //Genero 10 personajes y los guardo en el archivo.
             for (int i = 0; i < 10; i++)
             {
                 FabricaDePersonaje personaje = new FabricaDePersonaje();
@@ -94,7 +93,7 @@ class Program
     Random random = new Random();
     List<FabricaDePersonaje> seleccionados = listaPersonajes.OrderBy(x => random.Next()).Take(3).ToList();
 
-    // Restablecer la salud de los personajes seleccionados antes de mostrarlos.
+    //Restablecer la salud de los personajes seleccionados antes de mostrarlos.
     foreach (var personaje in seleccionados)
     {
         personaje.Salud = 100;
