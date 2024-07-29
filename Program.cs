@@ -73,11 +73,15 @@ class Program
 
                 case "3":
                     continuar = false;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\nGracias por jugar. ¡Hasta la próxima!\n");
+                    Console.ResetColor();
                     break;
 
                 default:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nOpción no válida. Por favor, elige una opción del menú.\n");
+                    Console.ResetColor();
                     break;
             }
         }
@@ -97,10 +101,14 @@ class Program
     }
 
     //Se muestran los tres personajes disponibles que tiene el jugador para elegir.
-    Console.WriteLine("Selecciona un personaje:");
+    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+    Console.WriteLine("\nSelecciona un personaje:\n");
+    Console.ResetColor();
     for (int i = 0; i < seleccionados.Count; i++)
     {
+        Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine($"{i + 1}. {seleccionados[i].MostrarCaracteristicas()}");
+        Console.ResetColor();
     }
 
     //Guardo el jugador elegido.
@@ -132,7 +140,9 @@ class Program
 
             if (jugador.Salud <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("Has sido derrotado. Fin del juego.");
+                Console.ResetColor();
                 return;
             }else
             {
@@ -140,7 +150,7 @@ class Program
                 if (rondaActual < rondas.Length)
                 {
                     //Utilizo esto para cambiar el color de las letras en la consola.
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"¡Felicidades! Has pasado a la ronda de {rondas[rondaActual]}.");
                     //Utilizo esto para restablecer el color de las letras en la consola.
                     Console.ResetColor();
@@ -149,7 +159,9 @@ class Program
             }
         }
     }
-    Console.WriteLine($"El ganador del torneo es {jugador.Nombre}.");
+    Console.ForegroundColor = ConsoleColor.Yellow;
+    Console.WriteLine($"\nEl ganador del torneo es {jugador.Nombre}.\n");
+    Console.ResetColor();
 
     //Guardo al ganador en el archivo de ganadores.
     manejadorHistorial.GuardarGanador(jugador, archivoGanadores);
@@ -163,14 +175,18 @@ class Program
 
         if (ganadores.Count == 0)
         {
-            Console.WriteLine("No hay ganadores registrados aún.");
+            Console.WriteLine("\nNo hay ganadores registrados aún.\n");
         }
         else
         {
-            Console.WriteLine("Historial de ganadores:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\nHistorial de ganadores:\n");
+            Console.ResetColor();
             foreach (var ganador in ganadores)
             {
+                Console.ForegroundColor = ConsoleColor.DarkGray;
                 Console.WriteLine(ganador.MostrarCaracteristicas());
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\n--------------------\n");
             }
         }

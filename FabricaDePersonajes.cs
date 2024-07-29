@@ -23,7 +23,7 @@ namespace FabricaDePersonajes
         public DateTime FechaNac { get; private set; }
         public int Edad { get; private set; }
 
-        private string []nombres = {"Artemis","Freya","Aurelio","Cleo","","Atticus","Demeter","Ares"};
+        private string []nombres = {"Artemis","Freya","Aurelio","Cleo","Hercules","Atticus","Demeter","Ares"};
         private string []apodos = {"El Valiente","El Sabio","El Rápido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
 
         private static readonly HttpClient client = new HttpClient();

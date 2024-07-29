@@ -42,7 +42,7 @@ namespace Combate
                 enemigo.Salud -= dañoJugadorProvocado;
 
                 //Utilizo esto para cambiar el color de las letras en la consola.
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine($"\n{jugador.Nombre} atacó a {enemigo.Nombre} y le provocó {dañoJugadorProvocado} puntos de daño.");
                 Console.WriteLine($"{enemigo.Nombre} ahora tiene {enemigo.Salud} puntos de salud.\n");
                 //Utilizo esto para restablecer el color de las letras en la consola.
@@ -51,7 +51,7 @@ namespace Combate
                 //Verifico si mi enemigo sigue con salud > 0.
                 if (enemigo.Salud <= 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"\n{enemigo.Nombre} ha sido derrotado.\n");
                     Console.ResetColor();
                     break;
@@ -73,7 +73,7 @@ namespace Combate
                 jugador.Salud -= dañoEnemigoProvocado;
 
                 //Utilizo esto para cambiar el color de las letras en la consola.
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine($"\n{enemigo.Nombre} atacó a {jugador.Nombre} y le provocó {dañoEnemigoProvocado} puntos de daño.");
                 Console.WriteLine($"{jugador.Nombre} ahora tiene {jugador.Salud} puntos de salud.\n");
                 //Utilizo esto para restablecer el color de las letras en la consola.
@@ -82,7 +82,7 @@ namespace Combate
                 //Verifico si mi jugador sigue con vida.
                 if (jugador.Salud <= 0)
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"\n{jugador.Nombre} ha sido derrotado.\n");
                     Console.ResetColor();
                     break;
