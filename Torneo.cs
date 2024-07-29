@@ -1,8 +1,8 @@
-using FabricaDePersonajes;
-using Combate;
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using FabricaDePersonajes;
+using Combate;
 
 namespace torneo
 {

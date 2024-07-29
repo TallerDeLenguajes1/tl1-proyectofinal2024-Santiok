@@ -1,17 +1,16 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.IO;
 using FabricaDePersonajes;
-using Api;
 using HistorialJson;
 using PersonajeJson;
-using System.IO;
-using System.Collections.Generic;
-using torneo;
 using Combate;
+using torneo;
+using Api;
 
 class Program
 {
-    
     static void Main()
     {
         string archivoPersonajes = "personajes.json";
@@ -35,7 +34,6 @@ class Program
                 listaPersonajes.Add(personaje);
             }
             manejadorJson.GuardarPersonajes(listaPersonajes, archivoPersonajes);
-
             /*
             //Muestro por pantalla los datos y características de los personajes cargados.
             foreach (var personaje in listaPersonajes)
@@ -151,7 +149,6 @@ class Program
             }
         }
     }
-
     Console.WriteLine($"El ganador del torneo es {jugador.Nombre}.");
 
     //Guardo al ganador en el archivo de ganadores.
@@ -178,5 +175,4 @@ class Program
             }
         }
     }
-
 }

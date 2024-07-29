@@ -1,15 +1,14 @@
-using System.Text.Json;
 using System.Text.Json.Serialization;
-using FabricaDePersonajes;
-using System.IO;
 using System.Collections.Generic;
+using FabricaDePersonajes;
+using System.Text.Json;
+using System.IO;
 using Api;
 
 namespace FabricaDePersonajes
 {
     public class FabricaDePersonaje 
     {
-   
         //Características del personaje.
         public int Velocidad { get; private set; }
         public int Destreza { get; private set; }
@@ -80,7 +79,6 @@ namespace FabricaDePersonajes
             int index = random.Next(root.results.Count);
 
             return root.results[index].name;
-
         }
 
         //Método para mostrar todas las características del personaje.
@@ -98,7 +96,5 @@ namespace FabricaDePersonajes
                    $"Armadura: {Armadura}\n" +
                    $"Salud: {Salud}\n";
         }
-
     }
-
 }

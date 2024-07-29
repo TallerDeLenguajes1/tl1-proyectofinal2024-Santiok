@@ -1,8 +1,8 @@
-using System.Text.Json;
 using System.Text.Json.Serialization;
-using FabricaDePersonajes;
-using System.IO;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.IO;
+using FabricaDePersonajes;
 using Api;
 
 namespace PersonajeJson
@@ -30,7 +30,6 @@ namespace PersonajeJson
         {
             try
             {
-
                 if (!File.Exists(personajesGuardados))
                 {
                 return new List<FabricaDePersonaje>();
@@ -43,7 +42,6 @@ namespace PersonajeJson
                 return personajes;
 
                 }
-
             }
             catch (Exception ex)
             {
@@ -64,6 +62,5 @@ namespace PersonajeJson
                 return false;
             }
         }
-
     }
 }
