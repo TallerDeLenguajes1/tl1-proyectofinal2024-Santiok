@@ -130,36 +130,40 @@ class Program
     int rondaActual = 0;
 
     //Realizar los combates del torneo.
-    foreach (var enemigo in participantesTorneo)
-    {
-        if (enemigo != jugador)
+        foreach (var enemigo in participantesTorneo)
         {
-            Combates combate = new Combates(jugador, enemigo);
-            combate.RealizarCombate();
+            if (enemigo != jugador)
+            {
+                int precision = 1 + rondaActual * 20;
+                Combates combate = new Combates(jugador, enemigo);
+                combate.RealizarCombate(precision);
 
-            if (jugador.Salud <= 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Has sido derrotado. Fin del juego.");
-                Console.ResetColor();
-                return;
-            }else
-            {
-                //Mostrar mensaje de pasar de ronda si el jugador gana el combate.
-                if (rondaActual < rondas.Length)
+                if (jugador.Salud <= 0)
                 {
-                    //Utilizo esto para cambiar el color de las letras en la consola.
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"¡Felicidades! Has pasado a la ronda de {rondas[rondaActual]}.");
-                    //Utilizo esto para restablecer el color de las letras en la consola.
+                    Console.WriteLine("Has sido derrotado. Fin del juego.");
                     Console.ResetColor();
-                    rondaActual++;
+                    return;
+                }
+                else
+                {
+                    //Mostrar mensaje de pasar de ronda si el jugador gana el combate.
+                    if (rondaActual < rondas.Length)
+                    {
+                        jugador.Salud = 100 + rondaActual*10;
+                        jugador.Potenciar(1); 
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"¡Felicidades! Has pasado a la ronda de {rondas[rondaActual]}.");
+                        Console.ResetColor();
+                        rondaActual++;
+                    }
                 }
             }
         }
-    }
+
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine($"\nEl ganador del torneo es {jugador.Nombre}.\n");
+    Console.WriteLine($"\nFELICIDADES GANASTE EL TORNEO!!!!\n");
     Console.ResetColor();
 
     //Guardo al ganador en el archivo de ganadores.

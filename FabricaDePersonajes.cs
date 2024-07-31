@@ -23,6 +23,16 @@ namespace FabricaDePersonajes
         public DateTime FechaNac { get; private set; }
         public int Edad { get; private set; }
 
+        //Metodo para potenciar al personaje.
+        public void Potenciar(int valor)
+        {
+            this.Velocidad = Velocidad + valor;
+            this.Destreza = Destreza + valor;
+            this.Fuerza = Fuerza + valor;
+            this.Nivel = Nivel + valor;
+            this.Armadura = Armadura + valor;
+        }
+
         private string []nombres = {"Artemis","Freya","Aurelio","Cleo","Hercules","Atticus","Demeter","Ares"};
         private string []apodos = {"El Valiente","El Sabio","El Rápido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
 
