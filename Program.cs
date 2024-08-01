@@ -64,6 +64,18 @@ class Program
             {
                 case "1":
                     Jugar(listaPersonajes, manejadorHistorial, archivoGanadores);
+                    
+                    //Genero otros 10 personajes nuevos para poder seguir jugando.
+                    //Limpio la lista actual antes de generar nuevos personajes.
+                    listaPersonajes.Clear(); 
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        FabricaDePersonaje personaje = new FabricaDePersonaje();
+                        listaPersonajes.Add(personaje);
+                    }
+                    manejadorJson.GuardarPersonajes(listaPersonajes, archivoPersonajes);
+
                     break;
 
                 case "2":
@@ -110,9 +122,21 @@ class Program
         Console.ResetColor();
     }
 
-    //Guardo el jugador elegido.
-    int eleccion = int.Parse(Console.ReadLine()) - 1;
-    FabricaDePersonaje jugador = seleccionados[eleccion];
+    //Control para que se elija una opcion correcta.
+    FabricaDePersonaje jugador = null;
+        while (jugador == null)
+        {
+            if (int.TryParse(Console.ReadLine(), out int eleccion) && eleccion >= 1 && eleccion <= 3)
+            {
+                jugador = seleccionados[eleccion - 1];
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nOpción no válida. Por favor, elige un número entre 1 y 3.\n");
+                Console.ResetColor();
+            }
+        }
 
     Console.ForegroundColor = ConsoleColor.DarkCyan;
     Console.WriteLine($"Has elegido a {jugador.Nombre}.");
@@ -120,11 +144,11 @@ class Program
 
     //Elimino a los tres personajes seleccionados anteriormente.
     listaPersonajes.RemoveAll(p => seleccionados.Contains(p));
-    List<FabricaDePersonaje> participantesTorneo = listaPersonajes.OrderBy(x => random.Next()).Take(7).ToList();
+    List<FabricaDePersonaje> participantesTorneo = listaPersonajes.OrderBy(x => random.Next()).Take(4).ToList();
     //Agrego al personaje sleccionado por el juagador.
     participantesTorneo.Add(jugador);
 
-    //Arreglo con las rondas del torneo
+    //Arreglo con las rondas del torneo.
     string[] rondas = {"Cuartos de final", "Semifinales", "Final" };
 
     int rondaActual = 0;
@@ -134,7 +158,7 @@ class Program
         {
             if (enemigo != jugador)
             {
-                int precision = 1 + rondaActual * 20;
+                int precision = 1 + rondaActual*10;
                 Combates combate = new Combates(jugador, enemigo);
                 combate.RealizarCombate(precision);
 
@@ -150,7 +174,7 @@ class Program
                     //Mostrar mensaje de pasar de ronda si el jugador gana el combate.
                     if (rondaActual < rondas.Length)
                     {
-                        jugador.Salud = 100 + rondaActual*10;
+                        jugador.Salud = 100 + rondaActual*5;
                         jugador.Potenciar(1); 
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine($"¡Felicidades! Has pasado a la ronda de {rondas[rondaActual]}.");
@@ -170,13 +194,14 @@ class Program
     manejadorHistorial.GuardarGanador(jugador, archivoGanadores);
 }
 
+
     //Metodo para mostrar el historial.
     static void VerHistorial(historialJson manejadorHistorial, string archivoGanadores)
     {
         //Leo la lista de gandores desde el archivo Json.
         List<FabricaDePersonaje> ganadores = manejadorHistorial.LeerGanadores(archivoGanadores);
 
-        if (ganadores.Count == 0)
+        if (ganadores.Count == 0 || ganadores == null)
         {
             Console.WriteLine("\nNo hay ganadores registrados aún.\n");
         }
