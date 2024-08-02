@@ -9,7 +9,7 @@ namespace FabricaDePersonajes
 {
     public class FabricaDePersonaje 
     {
-        //Características del personaje.
+        //Caracteristicas del personaje.
         public int Velocidad { get; private set; }
         public int Destreza { get; private set; }
         public int Fuerza { get; private set; }
@@ -34,7 +34,7 @@ namespace FabricaDePersonajes
         }
 
         private string []nombres = {"Artemis","Freya","Aurelio","Cleo","Hercules","Atticus","Demeter","Ares"};
-        private string []apodos = {"El Valiente","El Sabio","El Rápido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
+        private string []apodos = {"El Valiente","El Sabio","El Rapido","El Fuerte","El Astuto","El Invencible","El Imparable","El Conquistador"};
 
         private static readonly HttpClient client = new HttpClient();
 
@@ -78,7 +78,7 @@ namespace FabricaDePersonajes
 
             string responseBody = await response.Content.ReadAsStringAsync();
 
-            //DeserealizO la respuesta.
+            //Deserealizo la respuesta.
              var root = JsonSerializer.Deserialize<Root>(responseBody, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -91,7 +91,7 @@ namespace FabricaDePersonajes
             return root.results[index].name;
         }
 
-        //Método para mostrar todas las características del personaje.
+        //Metodo para mostrar todas las caracteristicas del personaje.
         public string MostrarCaracteristicas()
         {
             return $"Nombre: {Nombre}\n" +

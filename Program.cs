@@ -34,7 +34,7 @@ class Program
             }
             manejadorJson.GuardarPersonajes(listaPersonajes, archivoPersonajes);
             /*
-            //Muestro por pantalla los datos y características de los personajes cargados.
+            //Muestro por pantalla los datos y caracteristicas de los personajes cargados.
             foreach (var personaje in listaPersonajes)
             {
                 Console.WriteLine(personaje.MostrarCaracteristicas());
@@ -43,20 +43,20 @@ class Program
             */
         }
 
-        //Menú principal
+        //Menu principal
         bool continuar = true;
         while (continuar)
         { 
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine(
             "╔══════════════════════════════╗\n" +
-            "║          Menú principal      ║\n" +
+            "║          Menu principal      ║\n" +
             "╠══════════════════════════════╣\n" +
             "║ 1. Jugar                     ║\n" +
             "║ 2. Ver historial de ganadores║\n" +
             "║ 3. Salir                     ║\n" +
             "╚══════════════════════════════╝\n" +
-            "Elige una opción: ");
+            "Elige una opcion: ");
             Console.ResetColor();
             string opcion = Console.ReadLine();
 
@@ -85,13 +85,13 @@ class Program
                 case "3":
                     continuar = false;
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\nGracias por jugar. ¡Hasta la próxima!\n");
+                    Console.WriteLine("\nGracias por jugar. ¡Hasta la proxima!\n");
                     Console.ResetColor();
                     break;
 
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\nOpción no válida. Por favor, elige una opción del menú.\n");
+                    Console.WriteLine("\nOpcion no valida. Por favor, elige una opcion del menu.\n");
                     Console.ResetColor();
                     break;
             }
@@ -191,7 +191,7 @@ class Program
     Console.ResetColor();
 
     //Guardo al ganador en el archivo de ganadores.
-    manejadorHistorial.GuardarGanador(jugador, archivoGanadores);
+    archivoGanadores = manejadorHistorial.GuardarGanador(jugador, archivoGanadores);
 }
 
 
@@ -203,13 +203,14 @@ class Program
 
         if (ganadores.Count == 0 || ganadores == null)
         {
-            Console.WriteLine("\nNo hay ganadores registrados aún.\n");
+            Console.WriteLine("\nNo hay ganadores registrados aun.\n");
         }
         else
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\nHistorial de ganadores:\n");
             Console.ResetColor();
+            
             foreach (var ganador in ganadores)
             {
                 Console.ForegroundColor = ConsoleColor.DarkGray;
