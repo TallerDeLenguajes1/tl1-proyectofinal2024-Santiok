@@ -203,7 +203,9 @@ class Program
 
         if (ganadores.Count == 0 || ganadores == null)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\nNo hay ganadores registrados aun.\n");
+            Console.ResetColor();
         }
         else
         {
