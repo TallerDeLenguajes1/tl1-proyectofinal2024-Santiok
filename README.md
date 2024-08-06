@@ -6,7 +6,7 @@ Url de la Api: https://www.dnd5eapi.co/
 
 Consumo de la Api:
 
-
+Para el juego utilizo una api de un juego de rol llamado Calabozos y Dragones. Lo que hace esta Api es que me devuelve un tipo de personaje basado en ese juego de rol, esto lo utilizo en mi juego para proporcionar la caracteristica "Tipo" en las propiedades de mi personaje, esto se realiza de manera aleatoria a todos los personajes que se van creando en cada partida que se juega. Para esto se realiza una solicitud a la Api la cual me devuelve un lista con los distintos tipos de personajes que tiene, luego desde esa lista seleccionamos al azar un tipo para asignarle a nuestro personaje.
 
 Url Menu: https://stackoverflow.com/
 
